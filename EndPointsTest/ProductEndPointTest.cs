@@ -17,7 +17,7 @@ public class ProductEndPointTest
         ProductsDTOTest products = new();
 
         //ARRANGE
-        IService<ProductDTO, string> Service = Substitute.For<IService<ProductDTO, string>>();
+        IService<ProductDTO, long> Service = Substitute.For<IService<ProductDTO, long>>();
         Service.Add(products.DTOin).Returns(Task.FromResult(products.DTOOut));
 
 
@@ -35,13 +35,13 @@ public class ProductEndPointTest
         //Arrange
         ProductsDTOTest products = new();
         IEnumerable<ProductDTO?> lst = [products.DTOOut];
-        IService<ProductDTO, string> Service = Substitute.For<IService<ProductDTO, string>>();
-        Service.Get("111").Returns(Task.FromResult(lst)!);
+        IService<ProductDTO, long> Service = Substitute.For<IService<ProductDTO, long>>();
+        Service.Get(111).Returns(Task.FromResult(lst)!);
 
 
         //ACT
         ProductController controller = new(Service);
-        var response = await controller.GetResult("111");
+        var response = await controller.GetResult(111);
         var parse = response.Result.As<OkObjectResult>().Value.As<IEnumerable<ProductDTO>>();
         //ASSERT
         Assert.Contains(products.DTOOut, parse);
@@ -54,7 +54,7 @@ public class ProductEndPointTest
 
         //ARRANGE
         ProductsDTOTest products = new();
-        IService<ProductDTO, string> Service = Substitute.For<IService<ProductDTO, string>>();
+        IService<ProductDTO, long> Service = Substitute.For<IService<ProductDTO, long>>();
         Service.Update(products.DTOin).Returns(Task.FromResult(products.DTOOut));
 
         //ACT
@@ -69,7 +69,7 @@ public class ProductEndPointTest
     {
         //ARRANGE
         ProductsDTOTest products = new();
-        IService<ProductDTO, string> Service = Substitute.For<IService<ProductDTO, string>>();
+        IService<ProductDTO, long> Service = Substitute.For<IService<ProductDTO, long>>();
         Service.Delete(products.DTOin).Returns(Task.FromResult(products.DTOOut));
         ProductController controller = new(Service);
         //ACT
