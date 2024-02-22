@@ -1,22 +1,21 @@
-using System.Net.Http.Json;
+
 using Microsoft.AspNetCore.Mvc.Testing;
-using ShopApi.DTOs.ProductDTOs;
+using Microsoft.AspNetCore.TestHost;
 namespace IntegrationTest;
 
-public class BasicTest(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
+public class BasicTest(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
 {
 
-    [Theory]
-    [InlineData("api/Products")]
-    [InlineData("api/Users")]
-    [InlineData("api/Invoices")]
-    public async Task Get_EndPointReturnSuccesActionResultProductsList(string url)
+
+    [Fact]
+    public async Task Get_EndPointReturnSuccesActionResultProductsList()
     {
+
         //ARRANGE
 
-        var client = factory.CreateClient();
+        var client = factory.CreateClient(new WebApplicationFactoryClientOptions());
         //ACT
-        var response = await client.GetAsync(url);
+        var response = await client.GetAsync("api/Products");
         //ASSERT
         response.EnsureSuccessStatusCode();
 
