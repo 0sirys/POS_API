@@ -4,7 +4,7 @@ using ShopApi.DTOs.InvoiceDTOs;
 using ShopApi.Interface;
 namespace ShopApi.Controllers;
 
-[Route("api/Invoices")]
+[Route("Invoices")]
 [ApiController]
 public class InvoiceController(IService<InvoiceDTO, long> Service, IGenerator generator) : ControllerBase
 {

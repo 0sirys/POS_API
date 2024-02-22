@@ -10,7 +10,7 @@ public class ProductDTO
 
     public decimal Price { get; set; }
 
-    public string? Code { get; set; }
+    public long Code { get; set; }
 
     public bool Type { get; set; }
 }

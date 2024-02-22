@@ -5,7 +5,7 @@ using ShopApi.DTOs.UserDTOs;
 using ShopApi.Interface;
 namespace ShopApi.Controllers;
 
-[Route("api/Users")]
+[Route("Users")]
 [ApiController]
 public class UserController(IService<UserDTO, string> Service, IValidator<UserDTO> validator) : ControllerBase
 {
@@ -16,6 +16,7 @@ public class UserController(IService<UserDTO, string> Service, IValidator<UserDT
         if (Name.IsNullOrEmpty())
         {
             var response = await Service.Get(Name);
+
 
             return response.IsNullOrEmpty() ? NotFound(Name) : Ok(response);
         }

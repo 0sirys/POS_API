@@ -4,7 +4,7 @@ using ShopApi.DTOs.ProductDTOs;
 using ShopApi.Interface;
 namespace ShopApi.Controllers;
 
-[Route("api/Products")]
+[Route("Products")]
 [ApiController]
 public class ProductController(IService<ProductDTO, long> Service) : ControllerBase
 {
@@ -20,7 +20,7 @@ public class ProductController(IService<ProductDTO, long> Service) : ControllerB
          return response.IsNullOrEmpty() ? NotFound(Code) : Ok(response);
 
       }
-      return BadRequest();
+      return BadRequest("Code must be plus than 0");
    }
 
    [HttpPost]
