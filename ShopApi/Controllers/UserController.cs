@@ -13,7 +13,7 @@ public class UserController(IService<UserDTO, string> Service, IValidator<UserDT
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDTO>>> GetUser([FromHeader] string Name = null!)
     {
-        if (Name.IsNullOrEmpty())
+        if (!Name.IsNullOrEmpty())
         {
             var response = await Service.Get(Name);
 
@@ -57,7 +57,7 @@ public class UserController(IService<UserDTO, string> Service, IValidator<UserDT
         var validation = validator.Validate(user);
         if (validation.IsValid)
         {
-            var response = await Service.Update(user);
+            var response = await Service.Delete(user);
             return response == null ? NotFound() : Ok(response);
         }
 

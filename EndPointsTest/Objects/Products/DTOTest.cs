@@ -10,7 +10,7 @@ public class ProductsDTOTest
 
     public readonly ProductDTO DTOin = new()
     {
-        Code = "111",
+        Code = 111,
         Cost = 300,
         Name = "DTOin",
         Price = (decimal)(300 * 1.35),
@@ -19,7 +19,7 @@ public class ProductsDTOTest
 
     public readonly ProductDTO DTOOut = new()
     {
-        Code = "111",
+        Code = 111,
         Cost = 300,
         Name = "DTOOut",
         Price = (decimal)(300 * 1.35),
